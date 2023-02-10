@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <Router>
-      <Admin key={access_token} theme={themeProvider} dataProvider={simpleRestProvider("http://localhost:10000")} dashboard={Dashboard}>
+      <Admin key={access_token} theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
         <Resource name="players" list={ListGuesser} edit={EditGuesser} recordRepresentation={(record) => `${record.name} ${record.surname}`} />
         <Resource name="plays" list={PlayList} edit={PlayEdit} create={PlayCreate} />
         <Resource name="stats" />
