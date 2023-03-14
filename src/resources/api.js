@@ -1,4 +1,4 @@
-const url = "http://localhost:10000"
+const url = process.env.REACT_APP_ENDPOINT;
 
 export const createLocation = name => fetch(`${url}/locations`, {
   method: "POST",
