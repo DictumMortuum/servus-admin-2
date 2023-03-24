@@ -17,6 +17,7 @@ import { BGStatsLocationList, BGStatsLocationEdit } from './resources/bgstats/lo
 import { BGStatsGamesList } from './resources/bgstats/games';
 import { BGStatsPlayList, BGStatsPlayEdit } from './resources/bgstats/plays';
 import { CachedpriceList } from './resources/cachedprices';
+import { PriceList } from './resources/prices';
 import Dashboard from './components/Dashboard';
 
 const App = () => {
@@ -36,7 +37,7 @@ const App = () => {
         <Resource name="bgstatsgames" list={BGStatsGamesList} />
         <Resource name="bgstatsplays" list={BGStatsPlayList} edit={BGStatsPlayEdit} />
         <Resource name="bgstats" />
-        <Resource name="prices" list={ListGuesser} />
+        <Resource name="prices" list={PriceList} />
         <Resource name="cachedprices" list={CachedpriceList} />
       </Admin>
     </Router>

@@ -77,12 +77,28 @@ export const createPlay = payload => fetch(`${url}/plays`, {
   })
 });
 
-export const createIgnore = name => fetch(`${url}/ignoredprices`, {
+export const createIgnore = ({ name, store_id })=> fetch(`${url}/ignoredprices`, {
   method: "POST",
   headers: {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
     name,
+    store_id,
   })
+});
+
+export const searchCachedPrice = id => fetch(`${url}/cachedprices/search/${id}`, {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+});
+
+export const createPriceFromCachedPrice = id => fetch(`${url}/cachedprices/create/${id}`, {
+  method: "POST",
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
 });

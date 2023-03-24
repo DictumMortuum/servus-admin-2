@@ -7,20 +7,33 @@ import {
   TextField,
   UrlField,
   useRecordContext,
+  DeleteButton
 } from 'react-admin';
-import { createIgnore } from './api';
+import { createIgnore, createPriceFromCachedPrice } from './api';
 import Button from '@mui/material/Button';
 
 const IgnoreButton = () => {
   const record = useRecordContext();
 
   const handleClick = async () => {
-    createIgnore(record.name).then(rs => rs.json()).then(rs => {
+    createIgnore(record).then(rs => rs.json()).then(rs => {
       console.log(rs);
     });
   }
 
   return <Button variant="contained" onClick={handleClick}>Ignore</Button>;
+}
+
+const CreateButton = () => {
+  const record = useRecordContext();
+
+  const handleClick = async () => {
+    createPriceFromCachedPrice(record.id).then(rs => rs.json()).then(rs => {
+      console.log(rs);
+    });
+  }
+
+  return <Button variant="contained" onClick={handleClick}>Create</Button>;
 }
 
 export const CachedpriceList = () => (
@@ -36,6 +49,8 @@ export const CachedpriceList = () => (
       <NumberField source="stock" />
       <UrlField source="url" />
       <IgnoreButton />
+      <CreateButton />
+      <DeleteButton />
     </Datagrid>
   </List>
 );

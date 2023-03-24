@@ -1,7 +1,26 @@
-import { BooleanField, Datagrid, DateField, List, NumberField, ReferenceField, TextField, UrlField } from 'react-admin';
+import {
+  BooleanField,
+  Datagrid,
+  DateField,
+  List,
+  NumberField,
+  ReferenceField,
+  TextField,
+  TextInput,
+  UrlField,
+  SelectInput
+} from 'react-admin';
+
+const postFilters = [
+  <TextInput source="name@like" label="Search" />,
+  <SelectInput source="batch" label="Batch" choices={[
+    { id: 1, name: "Active Batch" },
+    { id: 0, name: "Inactive Batch" },
+  ]} />
+];
 
 export const PriceList = () => (
-  <List>
+  <List filters={postFilters}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <ReferenceField source="boardgame_id" reference="boardgames" />
@@ -14,7 +33,7 @@ export const PriceList = () => (
       <UrlField source="url" />
       <BooleanField source="mapped" />
       <BooleanField source="ignored" />
-      <DateField source="batch" />
+      <NumberField source="batch" />
     </Datagrid>
   </List>
 );
