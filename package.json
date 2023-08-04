@@ -1,6 +1,6 @@
 {
   "name": "admin2",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "homepage": "https://admin2.dictummortuum.com",
   "dependencies": {

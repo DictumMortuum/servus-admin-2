@@ -88,6 +88,16 @@ export const createIgnore = ({ name, store_id })=> fetch(`${url}/ignoredprices`,
   })
 });
 
+export const createIgnoreName = ({ name })=> fetch(`${url}/ignorednames`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name,
+  })
+});
+
 export const searchCachedPrice = id => fetch(`${url}/cachedprices/search/${id}`, {
   headers: {
     'Accept': 'application/json',
