@@ -38,6 +38,7 @@ const CreateLocationButton = () => {
 
   const handleClick = () => {
     createPlay(record).then(rs => rs.json()).then(rs => {
+      console.log(rs)
       updateStatsPlay(record.id, rs.id).then(rs => rs.json()).then(rs => {
         console.log(rs);
       })

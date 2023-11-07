@@ -28,7 +28,9 @@ export const createPlayer = name => fetch(`${url}/players`, {
   body: JSON.stringify({
     name,
     surname: "",
-    email: ""
+    email: "",
+    avatar: "",
+    hidden: true
   })
 });
 
@@ -60,7 +62,7 @@ export const createPlay = payload => fetch(`${url}/plays`, {
   body: JSON.stringify({
     "boardgame_id": payload.game.boardgame_id,
     "date": new Date(payload.play_date),
-    "location_id": payload.location.location_id,
+    "location_id": payload.location.location_id || null,
     "play_data": null,
     "stats": payload.stats.map(d => ({
       "boardgame_id": payload.game.boardgame_id,

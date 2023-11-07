@@ -1,7 +1,7 @@
 export const filterToQuery = q => {
   if (q !== "") {
     return {
-      "name@like": `%${q}%`,
+      "name@like": `${q}%`,
     }
   } else {
     return {}
