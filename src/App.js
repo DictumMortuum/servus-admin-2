@@ -16,9 +16,7 @@ import { BGStatsPlayerList, BGStatsPlayerEdit } from './resources/bgstats/player
 import { BGStatsLocationList, BGStatsLocationEdit } from './resources/bgstats/locations';
 import { BGStatsGamesList } from './resources/bgstats/games';
 import { BGStatsPlayList, BGStatsPlayEdit } from './resources/bgstats/plays';
-import { CachedpriceList } from './resources/cachedprices';
-import { IgnoredNameCreate, IgnoredNameEdit, IgnoredNameList } from './resources/ignorednames';
-import { PriceList } from './resources/prices';
+import { YoutubeDLList, YoutubeDLEdit } from './resources/youtubedl';
 import Dashboard from './components/Dashboard';
 
 const App = () => {
@@ -38,9 +36,7 @@ const App = () => {
         <Resource name="bgstatsgames" list={BGStatsGamesList} />
         <Resource name="bgstatsplays" list={BGStatsPlayList} edit={BGStatsPlayEdit} />
         <Resource name="bgstats" />
-        <Resource name="prices" list={PriceList} />
-        <Resource name="cachedprices" list={CachedpriceList} />
-        <Resource name="ignorednames" list={IgnoredNameList} edit={IgnoredNameEdit} create={IgnoredNameCreate} />
+        <Resource name="youtubedl" list={YoutubeDLList} edit={YoutubeDLEdit} />
       </Admin>
     </Router>
   );
