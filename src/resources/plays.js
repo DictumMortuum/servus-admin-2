@@ -20,7 +20,8 @@ import {
   Edit,
   ReferenceField,
   TextInput,
-  BooleanInput
+  BooleanInput,
+  FunctionField
 } from 'react-admin';
 
 const createTransform = record => {
@@ -81,7 +82,7 @@ export const PlayList = () => (
           <ChipField source="player.name" />
         </SingleFieldList>
       </ArrayField>
-      <TextField source="play_data" />
+      <FunctionField render={record => JSON.stringify(record.play_data)} />
     </Datagrid>
   </List>
 );
