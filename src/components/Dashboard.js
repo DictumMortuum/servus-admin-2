@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Grid } from "@mui/material";
+import Box from '@mui/material/Box';
+import {
+  Grid,
+  Button,
+  TextField as MuiTextField
+} from '@mui/material';
 import {
   Title,
   useList,
@@ -12,6 +17,7 @@ import {
   useCreate,
   useRecordContext,
 } from 'react-admin';
+import { getBoardgameInfo, createBoardgameInfo } from '../resources/api';
 
 const LikeButton = () => {
   const record = useRecordContext();
@@ -50,7 +56,7 @@ const Upload = () => {
 
   return (
     <>
-      <h1>Upload Json file - Example</h1>
+      <h1>Upload Json file</h1>
       <input type="file" onChange={handleChange} />
       <br />
       <ListContextProvider value={listContext}>
@@ -66,11 +72,49 @@ const Upload = () => {
   );
 }
 
+const SearchBggButton = ({ id }) => {
+  const handleClick = async () => {
+    getBoardgameInfo({ id }).then(rs => rs.json()).then(rs => {
+      createBoardgameInfo({ body: rs });
+    });
+  }
+
+  return <Button variant="contained" onClick={handleClick}>Create</Button>;
+}
+
+const SearchBggId = () => {
+  const [id, setId] = React.useState("");
+
+  return (
+    <>
+      <h1>Update Boardgame Info</h1>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+      >
+        <MuiTextField
+          id="outlined-controlled"
+          label="Controlled"
+          value={id}
+          onChange={(event) => {
+            setId(event.target.value);
+          }}
+        />
+      </Box>
+      <SearchBggButton id={id} />
+    </>
+  );
+}
+
 const Dashboard = () => (
   <Card>
     <Title title="Home" />
     <CardContent>
       <Grid container>
+        <Grid md={12} xs={12}>
+          <SearchBggId />
+        </Grid>
         <Grid md={12} xs={12}>
           <Upload />
         </Grid>

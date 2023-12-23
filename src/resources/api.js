@@ -114,3 +114,18 @@ export const createPriceFromCachedPrice = id => fetch(`${url}/cachedprices/creat
     'Content-Type': 'application/json'
   },
 });
+
+export const getBoardgameInfo = ({ id }) => fetch(`${process.env.REACT_APP_BOARDGAMES_ENDPOINT}/boardgames/info/${id}`, {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+});
+
+export const createBoardgameInfo = ({ body }) => fetch(`${url}/boardgames`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(body)
+});
