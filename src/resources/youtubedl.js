@@ -36,7 +36,7 @@ const download = ({ url, series }) => fetch(`https://nas.dictummortuum.com/hooks
   })
 });
 
-const ProcessButton = () => {
+const DownloadButton = () => {
   const record = useRecordContext();
 
   const handleClick = async () => {
@@ -46,6 +46,17 @@ const ProcessButton = () => {
   }
 
   return <Button variant="contained" onClick={handleClick}>Download</Button>;
+}
+
+const ProcessButton = () => {
+  const record = useRecordContext();
+
+  const handleClick = async () => {
+    const upd = await updateProcessed(record).then(rs => rs.json());
+    console.log(upd);
+  }
+
+  return <Button color="error" onClick={handleClick}>Process</Button>;
 }
 
 export const filters = [
@@ -62,8 +73,9 @@ export const YoutubeDLList = () => (
       <TextField source="series" />
       <TextField source="url" />
       <BooleanField source="processed" />
-      <ProcessButton />
+      <DownloadButton />
       <EditButton />
+      <ProcessButton />
     </Datagrid>
   </List>
 );
