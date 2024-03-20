@@ -25,7 +25,7 @@ import {
 } from 'react-admin';
 
 const createTransform = record => {
-  if (record.play_data.teams.length === 0) {
+  if (record.play_data.teams !== undefined && record.play_data.teams.length === 0) {
     delete record.play_data.teams;
 
     return {
