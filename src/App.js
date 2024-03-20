@@ -18,6 +18,7 @@ import { BGStatsGamesList } from './resources/bgstats/games';
 import { BGStatsPlayList, BGStatsPlayEdit } from './resources/bgstats/plays';
 import { YoutubeDLList, YoutubeDLEdit } from './resources/youtubedl';
 import Dashboard from './components/Dashboard';
+import { BookEdit, BookList, BookCreate } from './resources/books';
 
 const App = () => {
   const access_token = useSelector(state => state.user.access_token);
@@ -25,6 +26,7 @@ const App = () => {
   return (
     <Router>
       <Admin key={access_token} theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
+        <Resource name="books" list={BookList} edit={BookEdit} create={BookCreate} />
         <Resource name="players" list={ListGuesser} edit={EditGuesser} recordRepresentation={(record) => `${record.name} ${record.surname}`} />
         <Resource name="plays" list={PlayList} edit={PlayEdit} create={PlayCreate} />
         <Resource name="stats" />
