@@ -21,8 +21,10 @@ import {
   ReferenceField,
   BooleanInput,
   TextInput,
-  FunctionField
+  FunctionField,
+  useGetOne
 } from 'react-admin';
+import { useWatch } from 'react-hook-form';
 
 const createTransform = record => {
   if (record.play_data.teams !== undefined && record.play_data.teams.length === 0) {
@@ -54,12 +56,22 @@ const createTransform = record => {
   }
 }
 
+const IgnoreButton = () => {
+  const id = useWatch({ name: 'boardgame_id' });
+  const { data, isLoading, error } = useGetOne("boardgames", { id });
+  if (isLoading) { return <p>Loading</p>; }
+  if (error) { return <p>ERROR</p>; }
+  const { square200 } = data;
+  return <img src={square200} width="200" height="200" alt="" />
+}
+
 const PlayForm = () => {
   return (
     <SimpleForm>
       <ReferenceInput source="boardgame_id" reference="boardgames" sort={{ "field": "name", "order": "ASC" }}>
         <AutocompleteInput source="name" optionText="name" optionValue="id" filterToQuery={filterToQuery} />
       </ReferenceInput>
+      <IgnoreButton />
       <LocationInput />
       <DateInput source="date" />
       {/* <TextInput source="play_data" /> */}
