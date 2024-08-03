@@ -27,9 +27,11 @@ import {
 import { useWatch } from 'react-hook-form';
 
 const createTransform = record => {
-  if (record.play_data.teams !== undefined && record.play_data.teams.length === 0) {
-    delete record.play_data.teams;
+  delete record.boardgame;
 
+  console.log(record.play_data);
+
+  if (record.play_data.teams === undefined) {
     return {
       ...record,
       date: new Date(record.date),
@@ -37,6 +39,16 @@ const createTransform = record => {
       play_data: record.play_data === "" ? null : record.play_data,
     }
   } else {
+    if (record.play_data.teams.length === 0) {
+      delete record.play_data.teams;
+      return {
+        ...record,
+        date: new Date(record.date),
+        stats: record.stats.map(d => ({...d, boardgame_id: record.boardgame_id})),
+        play_data: record.play_data === "" ? null : record.play_data,
+      }
+    }
+
     const teams = record.play_data.teams.map(d => {
       if (typeof d === "string") {
         return d.split(",").map(i => parseInt(i))
