@@ -73,8 +73,7 @@ const IgnoreButton = () => {
   const { data, isLoading, error } = useGetOne("boardgames", { id });
   if (isLoading) { return <p>Loading</p>; }
   if (error) { return <p>ERROR</p>; }
-  const { square200 } = data;
-  return <img src={square200} width="200" height="200" alt="" />
+  return <img src={data?.square200} width="200" height="200" alt="" />
 }
 
 const PlayForm = () => {
