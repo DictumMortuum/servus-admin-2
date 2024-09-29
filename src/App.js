@@ -29,7 +29,7 @@ const App = () => {
     <Router>
       <Admin key={access_token} theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
         <Resource name="books" list={BookList} edit={BookEdit} create={BookCreate} />
-        <Resource name="players" list={PlayerList} edit={PlayerEdit} create={PlayerCreate} />
+        <Resource name="players" list={PlayerList} edit={PlayerEdit} create={PlayerCreate} recordRepresentation={(record) => `${record.name} ${record.surname}`} />
         <Resource name="plays" list={PlayList} edit={PlayEdit} create={PlayCreate} />
         <Resource name="stats" />
         <Resource name="locations" />
