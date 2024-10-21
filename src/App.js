@@ -21,6 +21,8 @@ import Dashboard from './components/Dashboard';
 import { BookEdit, BookList, BookCreate } from './resources/books';
 import { PlayerEdit, PlayerCreate, PlayerList } from './resources/players';
 import { EurovisionvoteList } from './resources/eurovisionvotes';
+import { EurovisionparticipationList } from './resources/eurovisionparticipations';
+import { DevicesCreate, DevicesEdit, DevicesList } from './resources/devices';
 
 const App = () => {
   const access_token = useSelector(state => state.user.access_token);
@@ -35,6 +37,7 @@ const App = () => {
         <Resource name="locations" />
         <Resource name="boardgames" list={ListGuesser} edit={EditGuesser} />
         <Resource name="stores" list={ListGuesser} edit={EditGuesser} />
+        <Resource name="devices" list={DevicesList} edit={DevicesEdit} create={DevicesCreate} />
         {/* <Resource name="bgstatsplayers" list={BGStatsPlayerList} edit={BGStatsPlayerEdit} />
         <Resource name="bgstatslocations" list={BGStatsLocationList} edit={BGStatsLocationEdit} />
         <Resource name="bgstatsgames" list={BGStatsGamesList} />
@@ -42,6 +45,7 @@ const App = () => {
         <Resource name="bgstats" /> */}
         <Resource name="youtubedl" list={YoutubeDLList} edit={YoutubeDLEdit} />
         <Resource name="eurovisionvotes" list={EurovisionvoteList} />
+        <Resource name="eurovisionparticipations" list={EurovisionparticipationList} />
       </Admin>
     </Router>
   );

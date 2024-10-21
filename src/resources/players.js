@@ -21,17 +21,17 @@ const postFilters = [
 ];
 
 export const PlayerList = () => (
-    <List perPage={50} filters={postFilters}>
-      <Datagrid>
-        <TextField source="id" />
-        <TextField source="name" />
-        <TextField source="surname" />
-        <EmailField source="email" />
-        <BooleanField source="hidden" />
-        <TextField source="avatar" />
-        <TextField source="bgg_username" />
-      </Datagrid>
-    </List>
+  <List perPage={50} filters={postFilters}>
+    <Datagrid>
+      <TextField source="id" />
+      <TextField source="name" />
+      <TextField source="surname" />
+      <EmailField source="email" />
+      <BooleanField source="hidden" />
+      <TextField source="avatar" />
+      <TextField source="bgg_username" />
+    </Datagrid>
+  </List>
 );
 
 const PlayerForm = () => (
@@ -43,7 +43,7 @@ const PlayerForm = () => (
     <TextInput source="avatar" />
     <TextInput source="bgg_username" />
   </SimpleForm>
-)
+);
 
 export const PlayerEdit = () => (
   <Edit>
