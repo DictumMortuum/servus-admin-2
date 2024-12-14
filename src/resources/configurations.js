@@ -3,20 +3,43 @@ import {
   Datagrid,
   List,
   TextField,
-  NumberField,
   Edit,
   SimpleForm,
   TextInput,
-  NumberInput,
   Create,
+  useRecordContext,
+  useUpdate,
+  BooleanField,
+  BooleanInput,
 } from 'react-admin';
+import Button from '@mui/material/Button';
+
+const ProcessButton = () => {
+  const record = useRecordContext();
+
+  const [update] = useUpdate("configurations", {
+    id: record.id,
+    data: {
+      ...record,
+      value: !record.value,
+    },
+    previousData: record
+  });
+
+  const handleClick = async () => {
+    update();
+  }
+
+  return <Button variant="contained" onClick={handleClick}>Include</Button>;
+}
 
 export const ConfigurationList = () => (
-  <List perPage={50}>
-    <Datagrid rowClick="edit">
+  <List>
+    <Datagrid rowClick="">
       <TextField source="id" />
       <TextField source="config" />
-      <NumberField source="value" />
+      <BooleanField source="value" />
+      <ProcessButton />
     </Datagrid>
   </List>
 );
@@ -24,7 +47,7 @@ export const ConfigurationList = () => (
 const ConfigurationForm = () => (
   <SimpleForm>
     <TextInput source="config" />
-    <NumberInput source="value" />
+    <BooleanInput source="value" />
   </SimpleForm>
 )
 
