@@ -23,6 +23,7 @@ import { PlayerEdit, PlayerCreate, PlayerList } from './resources/players';
 import { EurovisionvoteList } from './resources/eurovisionvotes';
 import { EurovisionparticipationList } from './resources/eurovisionparticipations';
 import { DevicesCreate, DevicesEdit, DevicesList } from './resources/devices';
+import { ConfigurationCreate, ConfigurationEdit, ConfigurationList } from './resources/configurations';
 
 const App = () => {
   const access_token = useSelector(state => state.user.access_token);
@@ -30,6 +31,7 @@ const App = () => {
   return (
     <Router>
       <Admin key={access_token} theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
+        <Resource name="configurations" list={ConfigurationList} edit={ConfigurationEdit} create={ConfigurationCreate} />
         <Resource name="books" list={BookList} edit={BookEdit} create={BookCreate} />
         <Resource name="players" list={PlayerList} edit={PlayerEdit} create={PlayerCreate} recordRepresentation={(record) => `${record.name} ${record.surname}`} />
         <Resource name="plays" list={PlayList} edit={PlayEdit} create={PlayCreate} />
