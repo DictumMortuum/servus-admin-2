@@ -9,7 +9,6 @@ import themeProvider from './themeProvider';
 import simpleRestProvider from 'ra-data-simple-rest';
 // import dataProvider from './dataProvider';
 // import Login from './components/Login';
-import { useSelector } from 'react-redux';
 import { Admin, Resource, ListGuesser, EditGuesser } from 'react-admin';
 import { PlayList, PlayCreate, PlayEdit } from './resources/plays';
 // import { BGStatsPlayerList, BGStatsPlayerEdit } from './resources/bgstats/players';
@@ -24,13 +23,12 @@ import { EurovisionvoteList } from './resources/eurovisionvotes';
 import { EurovisionparticipationList } from './resources/eurovisionparticipations';
 import { DevicesCreate, DevicesEdit, DevicesList } from './resources/devices';
 import { ConfigurationCreate, ConfigurationEdit, ConfigurationList } from './resources/configurations';
+import { PlaylistCreate, PlaylistEdit, PlaylistList } from './resources/playlists';
 
 const App = () => {
-  const access_token = useSelector(state => state.user.access_token);
-
   return (
     <Router>
-      <Admin key={access_token} theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
+      <Admin theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
         <Resource name="configurations" list={ConfigurationList} edit={ConfigurationEdit} create={ConfigurationCreate} />
         <Resource name="books" list={BookList} edit={BookEdit} create={BookCreate} />
         <Resource name="players" list={PlayerList} edit={PlayerEdit} create={PlayerCreate} recordRepresentation={(record) => `${record.name} ${record.surname}`} />
@@ -46,6 +44,7 @@ const App = () => {
         <Resource name="bgstatsplays" list={BGStatsPlayList} edit={BGStatsPlayEdit} />
         <Resource name="bgstats" /> */}
         <Resource name="youtubedl" list={YoutubeDLList} edit={YoutubeDLEdit} />
+        <Resource name="playlists" list={PlaylistList} edit={PlaylistEdit} create={PlaylistCreate} />
         <Resource name="eurovisionvotes" list={EurovisionvoteList} />
         <Resource name="eurovisionparticipations" list={EurovisionparticipationList} />
       </Admin>
