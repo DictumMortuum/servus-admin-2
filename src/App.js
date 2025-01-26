@@ -24,11 +24,19 @@ import { EurovisionparticipationList } from './resources/eurovisionparticipation
 import { DevicesCreate, DevicesEdit, DevicesList } from './resources/devices';
 import { ConfigurationCreate, ConfigurationEdit, ConfigurationList } from './resources/configurations';
 import { PlaylistCreate, PlaylistEdit, PlaylistList } from './resources/playlists';
+import { ScrapeCreate, ScrapeEdit, ScrapeList, scrapeUrl, scrapeStore } from './resources/scrape';
+import { ScrapeUrlCreate, ScrapeUrlEdit, ScrapeUrlList } from './resources/scrapeurls';
 
 const App = () => {
+  const dataProvider = {
+    ...simpleRestProvider(process.env.REACT_APP_ENDPOINT),
+    scrapeUrl,
+    scrapeStore,
+  };
+
   return (
     <Router>
-      <Admin theme={themeProvider} dataProvider={simpleRestProvider(process.env.REACT_APP_ENDPOINT)} dashboard={Dashboard}>
+      <Admin theme={themeProvider} dataProvider={dataProvider} dashboard={Dashboard}>
         <Resource name="configurations" list={ConfigurationList} edit={ConfigurationEdit} create={ConfigurationCreate} />
         <Resource name="books" list={BookList} edit={BookEdit} create={BookCreate} />
         <Resource name="players" list={PlayerList} edit={PlayerEdit} create={PlayerCreate} recordRepresentation={(record) => `${record.name} ${record.surname}`} />
@@ -47,6 +55,8 @@ const App = () => {
         <Resource name="playlists" list={PlaylistList} edit={PlaylistEdit} create={PlaylistCreate} />
         <Resource name="eurovisionvotes" list={EurovisionvoteList} />
         <Resource name="eurovisionparticipations" list={EurovisionparticipationList} />
+        <Resource name="scrapes" list={ScrapeList} edit={ScrapeEdit} create={ScrapeCreate} />
+        <Resource name="scrapeurls" list={ScrapeUrlList} edit={ScrapeUrlEdit} create={ScrapeUrlCreate} />
       </Admin>
     </Router>
   );

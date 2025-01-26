@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import {
-  Grid,
+  // Grid,
   Button,
   TextField as MuiTextField
 } from '@mui/material';
@@ -109,18 +109,25 @@ const SearchBggId = () => {
 
 const Dashboard = () => (
   <Card>
-    <Title title="Home" />
-    <CardContent>
-      <Grid container>
-        <Grid md={12} xs={12}>
-          <SearchBggId />
-        </Grid>
-        <Grid md={12} xs={12}>
-          {/* <Upload /> */}
-        </Grid>
-      </Grid>
-    </CardContent>
+    <Title title="Welcome to the administration" />
+    <CardContent>Lorem ipsum sic dolor amet...</CardContent>
   </Card>
 );
+
+// const Dashboard = () => (
+//   <Card>
+//     <Title title="Home" />
+//     <CardContent>
+//       <Grid container>
+//         <Grid md={12} xs={12}>
+//           <SearchBggId />
+//         </Grid>
+//         <Grid md={12} xs={12}>
+//           {/* <Upload /> */}
+//         </Grid>
+//       </Grid>
+//     </CardContent>
+//   </Card>
+// );
 
 export default Dashboard;

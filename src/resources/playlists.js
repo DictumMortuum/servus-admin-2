@@ -58,10 +58,8 @@ const ListActions = () => (
 export const PlaylistList = () => (
   <List actions={<ListActions/>}>
     <Datagrid rowClick="">
-      {/* <TextField source="playlist_id" /> */}
       <TextField source="name" />
       <PlayButton />
-      {/* <TextField source="url" /> */}
       <BooleanField source="downloaded" />
       <EditButton />
     </Datagrid>
